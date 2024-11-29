@@ -40,10 +40,6 @@ def data_acquisition():
     with bd.connect("bd/coffee.sqlite") as con:
         cur = con.cursor()
         
-        result = cur.execute("""
-        SELECT 
-        [название сорта], [степень обжарки], [молотый/в зернах], [описание вкуса], [цена], [объем упаковки]
-        FROM coffee
-        """).fetchall()
+        result = cur.execute("""SELECT * FROM coffee""").fetchall()
         
         return result

@@ -1,6 +1,6 @@
 import sys
 from PyQt6 import uic
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QHeaderView
 
 from bd.interaction_bd import data_acquisition
 
@@ -9,6 +9,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('main.ui', self)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         
         self.refreshButton.clicked.connect(self.data_display)
         
