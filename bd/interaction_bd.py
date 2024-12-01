@@ -11,7 +11,7 @@ def add_data(variety_name="Variety Name", roast_level="Medium", grind_type="Grou
         
         cur.execute(f"""
         INSERT INTO 
-        coffee([название сорта], [степень обжарки], [молотый/в зернах], [описание вкуса], [цена], [объем упаковки])
+        coffee(variety_name, roast_level, grind_type, taste_description, price, package_volume)
         VALUES
         ({variety_name}, {roast_level}, {grind_type}, {taste_description}, {price}, {package_volume})
         """)
@@ -24,7 +24,7 @@ def add_template_data():
         
         cur.execute("""
         INSERT INTO 
-        coffee([название сорта], [степень обжарки], [молотый/в зернах], [описание вкуса], [цена], [объем упаковки])
+        coffee(variety_name, roast_level, grind_type, taste_description, price, package_volume)
         VALUES
         ('Ethiopian Yirgacheffe', 'Light', 'Whole Bean',
         'Floral and citrus notes with a bright acidity', 12.99, '250g'),
@@ -36,10 +36,21 @@ def add_template_data():
 
 
 # функция для получения данных из бд
-def data_acquisition():
+def data_acquisition(id_title=None):
     with bd.connect("bd/coffee.sqlite") as con:
         cur = con.cursor()
         
-        result = cur.execute("""SELECT * FROM coffee""").fetchall()
+        if id_title is None:
+            result = cur.execute("""SELECT * FROM coffee""").fetchall()
+        else:
+            try:
+                id_title = int(id_title)
+            except ValueError:
+                pass
+            
+            result = cur.execute(f'''
+            SELECT * FROM coffee
+            WHERE id = {id_title} OR variety_name = "{id_title}"
+            ''').fetchone()
         
         return result
