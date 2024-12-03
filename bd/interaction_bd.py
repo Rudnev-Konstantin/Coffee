@@ -36,8 +36,6 @@ def edit_data(id_title, variety_name="Variety Name", roast_level="Medium", grind
             price = {price}, package_volume = "{package_volume}"
         WHERE id = ? OR variety_name = ?
         """, (id_title, id_title))
-        
-        print("Вроде хотяб без ишибки", id_title)
 
 
 # функция для добавления шаблонных записей в таблицу

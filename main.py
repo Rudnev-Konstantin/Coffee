@@ -3,6 +3,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QHeaderView
 
 from bd.interaction_bd import data_acquisition
+from components.add_edit_coffee.add_edit_coffee_form import AddEditForm
 
 
 class MainWindow(QMainWindow):
@@ -14,6 +15,8 @@ class MainWindow(QMainWindow):
         self.refreshButton.clicked.connect(self.data_display)
         
         self.data_display()
+        
+        self.refreshButton.clicked.connect(self.show_dialog_widget)
     
     def data_display(self):
         data = data_acquisition()
@@ -22,6 +25,12 @@ class MainWindow(QMainWindow):
         for row, item_data in enumerate(data):
             for column, cell in enumerate(item_data):
                 self.tableWidget.setItem(row, column, QTableWidgetItem(str(cell)))
+    
+    def show_dialog_widget(self):
+        self.dialog_widget = AddEditForm(self)
+        self.dialog_widget.exec()
+        
+        self.data_display()
 
 
 if __name__ == "__main__":

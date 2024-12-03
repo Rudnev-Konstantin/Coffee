@@ -6,11 +6,14 @@ from bd.interaction_bd import add_data, edit_data, data_acquisition
 
 
 class AddEditForm(QDialog):
-    def __init__(self):
+    def __init__(self, parent=None):
         super().__init__()
         uic.loadUi("components/add_edit_coffee/addEditCoffeeForm.ui", self)
         
         self.switching_modes()
+        
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
         
         self.add_edit_CheckBox.stateChanged.connect(self.switching_modes)
         
