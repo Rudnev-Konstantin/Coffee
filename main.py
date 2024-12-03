@@ -11,6 +11,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         uic.loadUi('main.ui', self)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        header_names = ["ID", "Название сорта", "Степень обжарки", "Молотый/в зернах", "Описание вкуса",
+                        "Цена", "Объем упаковки"]
+        self.tableWidget.setHorizontalHeaderLabels(header_names)
         
         self.refreshButton.clicked.connect(self.data_display)
         
@@ -27,8 +30,8 @@ class MainWindow(QMainWindow):
                 self.tableWidget.setItem(row, column, QTableWidgetItem(str(cell)))
     
     def show_dialog_widget(self):
-        self.dialog_widget = AddEditForm(self)
-        self.dialog_widget.exec()
+        dialog_widget = AddEditForm(self)
+        dialog_widget.exec()
         
         self.data_display()
 
