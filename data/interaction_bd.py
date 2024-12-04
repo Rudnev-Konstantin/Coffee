@@ -6,7 +6,7 @@ import sqlite3 as bd
 # функция для добавления записи
 def add_data(variety_name="Variety Name", roast_level="Medium", grind_type="Ground",
              taste_description="description...", price=0, package_volume="500g"):
-    with bd.connect("bd/coffee.sqlite") as con:
+    with bd.connect("data/coffee.sqlite") as con:
         cur = con.cursor()
         
         cur.execute(f"""
@@ -21,7 +21,7 @@ def add_data(variety_name="Variety Name", roast_level="Medium", grind_type="Grou
 # функция для изменения записи
 def edit_data(id_title, variety_name="Variety Name", roast_level="Medium", grind_type="Ground",
               taste_description="description...", price=0, package_volume="500g"):
-    with bd.connect("bd/coffee.sqlite") as con:
+    with bd.connect("data/coffee.sqlite") as con:
         cur = con.cursor()
         
         try:
@@ -40,7 +40,7 @@ def edit_data(id_title, variety_name="Variety Name", roast_level="Medium", grind
 
 # функция для добавления шаблонных записей в таблицу
 def add_template_data():
-    with bd.connect("bd/coffee.sqlite") as con:
+    with bd.connect("data/coffee.sqlite") as con:
         cur = con.cursor()
         
         cur.execute("""
@@ -58,7 +58,7 @@ def add_template_data():
 
 # функция для получения данных из бд
 def data_acquisition(id_title=None):
-    with bd.connect("bd/coffee.sqlite") as con:
+    with bd.connect("data/coffee.sqlite") as con:
         cur = con.cursor()
         
         if id_title is None:

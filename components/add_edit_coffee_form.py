@@ -1,14 +1,16 @@
-from PyQt6 import uic
 from PyQt6.QtWidgets import QDialog, QMessageBox, QAbstractButton, QDialogButtonBox
 from PyQt6.QtCore import pyqtSlot
 
-from bd.interaction_bd import add_data, edit_data, data_acquisition
+from styles.style_add_edit_coffee import Ui_add_edit_form
+
+from data.interaction_bd import add_data, edit_data, data_acquisition
 
 
-class AddEditForm(QDialog):
+
+class AddEditForm(QDialog, Ui_add_edit_form):
     def __init__(self, parent=None):
         super().__init__()
-        uic.loadUi("components/add_edit_coffee/addEditCoffeeForm.ui", self)
+        self.setupUi(self)
         
         self.switching_modes()
         

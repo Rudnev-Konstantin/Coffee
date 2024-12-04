@@ -1,15 +1,17 @@
 import sys
-from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QHeaderView
 
-from bd.interaction_bd import data_acquisition
-from components.add_edit_coffee.add_edit_coffee_form import AddEditForm
+from styles.style_main import Ui_MainWindow
+
+from data.interaction_bd import data_acquisition
+from components.add_edit_coffee_form import AddEditForm
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
+        
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         header_names = ["ID", "Название сорта", "Степень обжарки", "Молотый/в зернах", "Описание вкуса",
                         "Цена", "Объем упаковки"]
