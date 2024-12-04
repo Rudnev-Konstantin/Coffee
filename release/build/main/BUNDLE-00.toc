@@ -1,0 +1,3 @@
+([('main',
+   '/Users/konstantin_rudnev/Documents/Programming/Trenning_git/Expresso/dist/main',
+   'EXECUTABLE')],)
